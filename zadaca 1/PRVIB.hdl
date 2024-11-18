@@ -1,0 +1,11 @@
+CHIP PRVIB{
+	IN x,  y, z; 
+	OUT out;
+
+	PARTS:
+
+	Not(in = y, out = notY);
+	
+	And(a = notY, b = z, out = and1);
+	And(a = x, b = and1, out = Out);
+}
