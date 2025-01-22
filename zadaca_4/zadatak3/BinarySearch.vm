@@ -1,0 +1,85 @@
+function binarySearch 4
+
+//l = 0
+push constant 0
+pop local 0
+
+//r = n-1
+push argument 1
+push constant 1
+sub
+pop local 1
+
+//dok je l <= r
+label WHILE_EXP0
+push local 0
+push local 1
+gt
+not
+not
+
+//offset = r - l
+if-goto WHILE_END0
+push local 1
+push local 0
+sub
+pop local 3
+
+//offset = div(offset, 2)
+push local 3
+push constant 2
+call divmod.div 2 //iskoristi divmod za uzimanje sljedeceg indeksa
+pop local 3
+
+//m = l + offset
+push local 0
+push local 3
+add
+pop local 2
+
+//ako je arr[m] == x, returnaj m
+push local 2
+push argument 0
+add
+pop pointer 1
+push that 0
+push argument 2
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 2
+return
+
+//ako je arr[m] < x, postavi l = m+1
+label IF_FALSE0
+push local 2
+push argument 0
+add
+pop pointer 1
+push that 0
+push argument 2
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 2
+push constant 1
+add
+pop local 0
+goto IF_END1
+
+//ako je arr[m] > x, r = m-1
+label IF_FALSE1
+push local 2
+push constant 1
+sub
+pop local 1
+label IF_END1
+goto WHILE_EXP0
+label WHILE_END0
+
+//ako nista ne prode, returnaj -1
+push constant 1
+neg
+return

@@ -1,0 +1,40 @@
+push constant 3
+push constant 5
+push constant 4
+call min 3
+
+function min 0
+push argument 0
+push argument 1
+lt
+if-goto PRVI-ZADNJI
+goto DRUGI-ZADNJI
+
+label PRVI-ZADNJI
+push argument 0
+push argument 2
+lt
+if-goto NULTI
+goto DRUGI
+
+label DRUGI-ZADNJI
+push argument 1
+push argument 2
+lt
+if-goto PRVI
+goto DRUGI
+
+label NULTI
+push argument 0
+goto END
+
+label PRVI
+push argument 1
+goto END
+
+label DRUGI
+push argument 2
+goto END
+
+label END
+return

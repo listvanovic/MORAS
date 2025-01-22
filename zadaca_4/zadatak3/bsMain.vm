@@ -1,0 +1,42 @@
+sp
+call bsMain.main 0
+ep
+
+function main 5
+push constant 10
+pop local 1
+push constant 10
+pop local 2
+push constant 2048
+pop local 0
+push constant 0
+pop local 3
+label WHILE_EXP0
+push local 3
+push local 1
+lt
+not
+if-goto WHILE_END0
+push local 3
+push local 0
+add
+push local 3
+push constant 1
+add
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+push local 1
+push local 2
+call BinarySearch.binarySearch 3
+pop static 1
+push constant 0
+return
