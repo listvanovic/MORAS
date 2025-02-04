@@ -1,0 +1,189 @@
+class vint
+{
+    field int capacity;
+    field Array container;
+
+    constructor vint new(int n)
+    {
+        var int i;
+
+        let capacity = 1;
+
+        if (~(n < 0))
+        {
+            let i = 0;
+            while(i < n)
+            {
+                let capacity = capacity + capacity;
+                let i = i + 1;
+            }
+        }
+
+        let container = Array.new(capacity);
+
+        return this;
+    }
+
+    method int len()
+    {
+        return capacity;
+    }
+
+    method void set(int k, int v)
+    {
+        let container[k] = v;
+        return;
+    }
+
+    method int get(int k)
+    {
+        return container[k];
+    }
+
+    method void resize(int m)
+    {
+        var int i, newCapacity, minCapacity;
+        var Array newContainer;
+
+        let newCapacity = 1;
+
+        if (~(m < 0))
+        {
+            let i = 0;
+            while(i < m)
+            {
+                let newCapacity = newCapacity + newCapacity;
+                let i = i + 1;
+            }
+        }
+
+        let newContainer = Array.new(newCapacity);
+
+        let minCapacity = newCapacity;
+        if(capacity < minCapacity)
+        {
+            let minCapacity = capacity;
+        }
+
+        let i = 0;
+        while(i < minCapacity)
+        {
+            let newContainer[i] = container[i];
+            let i = i + 1;
+        }
+
+        do container.dispose();
+        let container = newContainer;
+        let capacity = newCapacity;
+
+        return;
+    }
+
+    function boolean is_eq(vint A, vint B)
+    {
+        var int i;
+
+        if (~(A.len() = B.len()))
+        {
+            return false;
+        }
+
+        let i = 0;
+        while(i < A.len())
+        {
+            if (~(A.get(i) = B.get(i)))
+            {
+                return false;
+            }
+            let i = i + 1;
+        }
+
+        return true;
+    }
+
+    function boolean elems(vint A, vint B)
+    {
+        var int i;
+        var Array C, D;
+
+        if (~(A.len() = B.len()))
+        {
+            return false;
+        }
+
+        let C = vint.sorted(A);
+        let D = vint.sorted(B);
+
+        let i = 0;
+        while(i < A.len())
+        {
+            if (~(C[i] = D[i]))
+            {
+                return false;
+            }
+            let i = i + 1;
+        }
+
+        return true;
+    }
+
+    method void print()
+    {
+        var int i;
+        let i = 0;
+
+        while(i < len())
+        {
+            do Output.printInt(container[i]);
+            do Output.printString(" ");
+            let i = i + 1;
+        }
+
+        do Output.println();
+
+        return;
+    }
+
+    method void dispose()
+    {
+        do container.dispose();
+        return;
+    }
+
+    function Array sorted(vint V)
+    {
+        var int i, j, min_ind, temp;
+        var Array A;
+
+        let A = Array.new(V.len());
+        let i = 0;
+        while(i < V.len())
+        {
+            let A[i] = V.get(i);
+            let i = i + 1;
+        }
+
+        let i = 0;
+        while(i < V.len())
+        {
+            let min_ind = i;
+            let j = i + 1;
+            while(j < V.len())
+            {
+                if(A[j] < A[min_ind])
+                {
+                    let min_ind = j;
+                }
+
+                let j = j + 1;
+            }
+            let temp = A[i];
+            let A[i] = A[min_ind];
+            let A[min_ind] = temp;
+
+            let i = i + 1;
+        }
+
+        return A;
+    }
+}

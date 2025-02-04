@@ -1,0 +1,97 @@
+class Main
+{
+    function void main()
+    {
+        var int i;
+        var boolean B, E;
+        var vint V, W, Z;
+        let V = vint.new(2);
+        let W = vint.new(3);
+        let Z = vint.new(-2);
+
+        do V.set(0, 6);
+        do V.set(1, 5);
+        do V.set(2, 3);
+        do V.set(3, 4);
+
+        do V.print();
+        do Output.printString("len: ");
+        do Output.printInt(V.len());
+        do Output.println();
+        do Output.println();
+
+        do Output.printString("vint.new(-2) test");
+        do Output.println();
+        do Output.printString("len: ");
+        do Output.printInt(Z.len());
+        do Output.println();
+        do Output.println();
+
+        do Output.printString("Array resize:");
+        do Output.println();
+
+        do Output.printString("Old array: ");
+        do V.print();
+
+        do V.resize(3);
+
+        do V.set(7, 100);
+
+        do Output.printString("New array: ");
+        do V.print();
+        do Output.println();
+
+        let i = 0;
+        while(i < V.len())
+        {
+            do W.set(i, V.get(i));
+            let i = i + 1;
+        }
+
+        do Output.printString("Array V: ");
+        do V.print();
+
+        do Output.printString("Array W: ");
+        do W.print();
+
+        do Output.printString("is_eq: ");
+
+        let B = vint.is_eq(V, W);
+        if(B)
+        {
+            do Output.printString("Equal");
+        }
+        else
+        {
+            do Output.printString("Not equal");
+        }
+        do Output.println();
+        do Output.println();
+
+        do W.set(0, 5);
+        do W.set(1, 6);
+
+        do Output.printString("Array V: ");
+        do V.print();
+
+        do Output.printString("Array W: ");
+        do W.print();
+
+        do Output.printString("elems: ");
+
+        let E = vint.elems(V, W);
+        if(E)
+        {
+            do Output.printString("Equal elems");
+        }
+        else
+        {
+            do Output.printString("Not equal elems");
+        }
+        do Output.println();
+
+        do V.dispose();
+        do W.dispose();
+        return;
+    }
+}

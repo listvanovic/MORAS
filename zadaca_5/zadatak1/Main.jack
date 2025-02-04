@@ -1,0 +1,60 @@
+class Main
+{
+    function void main()
+    {
+        var Array A, B;
+        var int i, n;
+        let n = 8;
+        let A = Array.new(n);
+
+        let A[0] = 5;
+        let A[1] = 8;
+        let A[2] = 1;
+        let A[3] = 4;
+        let A[4] = 6;
+        let A[5] = 3;
+        let A[6] = 2;
+        let A[7] = 7;
+
+        let A = Sort.qsort(A, n);
+
+        let i = 0;
+        while(i < n)
+        {
+            do Output.printInt(A[i]);
+            do Output.println();
+            let i = i + 1;
+        }
+
+        do Output.println();
+
+        let n = 10;
+
+        let B = Array.new(n);
+
+        let B[0] = 5;
+        let B[1] = 8;
+        let B[2] = 1;
+        let B[3] = 4;
+        let B[4] = 6;
+        let B[5] = 3;
+        let B[6] = 2;
+        let B[7] = 7;
+        let B[8] = 10;
+        let B[9] = 9;
+
+        let B = Sort.qsort(B, n);
+
+        let i = 0;
+        while(i < n)
+        {
+            do Output.printInt(B[i]);
+            do Output.println();
+            let i = i + 1;
+        }
+
+        do A.dispose();
+        do B.dispose();
+        return;
+    }
+}

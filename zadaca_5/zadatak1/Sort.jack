@@ -1,0 +1,41 @@
+class Sort
+{
+    function Array qsort(Array A, int n)
+    {
+        return Sort.qsort_help(A, 0, n - 1);
+    }
+
+    function Array qsort_help(Array A, int l, int r)
+    {
+        var int x, i, j, temp;
+
+        if(l < r)
+        {
+            let x = A[l];
+            let i = l;
+            let j = l + 1;
+
+            while(~(j > r))
+            {
+                if(~(A[j] > x))
+                {
+                    let i = i + 1;
+
+                    let temp = A[i];
+                    let A[i] = A[j];
+                    let A[j] = temp;
+                }
+                let j = j + 1;
+            }
+
+            let temp = A[i];
+            let A[i] = A[l];
+            let A[l] = temp;
+
+            let A = Sort.qsort_help(A, l, i - 1);
+            let A = Sort.qsort_help(A, i + 1, r);
+        }
+
+        return A;
+    }
+}
